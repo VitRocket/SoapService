@@ -1,7 +1,10 @@
 # SoapService
 SoapService
 
+#Discovery Service
+https://github.com/VitRocket/EurekaServer
 
+#Links
 http://localhost:9100/actuator/info
 http://localhost:9100/service-instances/soapservice
 
