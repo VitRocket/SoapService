@@ -25,8 +25,12 @@ public class SoapApplication {
 @RestController
 class ServiceInstanceRestController {
 
+    private final DiscoveryClient discoveryClient;
+
     @Autowired
-    private DiscoveryClient discoveryClient;
+    public ServiceInstanceRestController(DiscoveryClient discoveryClient) {
+        this.discoveryClient = discoveryClient;
+    }
 
     @RequestMapping("/actuator/info")
     public String actuatorInfo() {
