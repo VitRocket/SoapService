@@ -34,7 +34,7 @@ class ServiceInstanceRestController {
 
     @RequestMapping("/actuator/info")
     public String actuatorInfo() {
-        return "Hello!";
+        return "Hello I am soapservice!";
     }
 
     @RequestMapping("/service-instances/{applicationName}")
