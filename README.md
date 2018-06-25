@@ -23,6 +23,6 @@ mvn jaxb2:xjc
 ### You may use Wizdler
 https://chrome.google.com/webstore/detail/wizdler/oebpmncolmhiapingjaagmapififiakb
 
-
+http://localhost:9100/ws/beer.wsdl
 http://localhost:9100/ws/product.wsdl
 
