@@ -25,8 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="product" type="{http://example.com/soap/product}ProductModel"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "name",
-    "description"
+    "product"
 })
-@XmlRootElement(name = "addProductRequest")
-public class AddProductRequest {
+@XmlRootElement(name = "updateProductRequest")
+public class UpdateProductRequest {
 
     @XmlElement(required = true)
-    protected String name;
-    @XmlElement(required = true)
-    protected String description;
+    protected ProductModel product;
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the product property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ProductModel }
      *     
      */
-    public String getName() {
-        return name;
+    public ProductModel getProduct() {
+        return product;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the product property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ProductModel }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    /**
-     * Gets the value of the description property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Sets the value of the description property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescription(String value) {
-        this.description = value;
+    public void setProduct(ProductModel value) {
+        this.product = value;
     }
 
 }

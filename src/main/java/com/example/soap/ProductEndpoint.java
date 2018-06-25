@@ -9,6 +9,8 @@ import com.example.soap.product.GetProductByIdRequest;
 import com.example.soap.product.GetProductByIdResponse;
 import com.example.soap.product.ProductModel;
 import com.example.soap.product.ServiceStatus;
+import com.example.soap.product.UpdateProductRequest;
+import com.example.soap.product.UpdateProductResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -82,6 +84,20 @@ public class ProductEndpoint {
             response.setServiceStatus(status);
             log.error("Content Already Available. " + e.getMessage());
         }
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateProductRequest")
+    @ResponsePayload
+    public UpdateProductResponse updateProduct(@RequestPayload UpdateProductRequest request) {
+        Product product = new Product();
+        BeanUtils.copyProperties(request.getProduct(), product);
+        productService.updateProduct(product);
+        ServiceStatus status = new ServiceStatus();
+        status.setStatusCode("SUCCESS");
+        status.setMessage("Content Updated Successfully");
+        UpdateProductResponse response = new UpdateProductResponse();
+        response.setServiceStatus(status);
         return response;
     }
 
