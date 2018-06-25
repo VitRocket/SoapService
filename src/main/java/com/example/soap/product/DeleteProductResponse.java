@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Product" type="{http://example.com/soap/product}ProductModel"/>
+ *         &lt;element name="serviceStatus" type="{http://example.com/soap/product}serviceStatus"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "product"
+    "serviceStatus"
 })
-@XmlRootElement(name = "getProductByIdResponse")
-public class GetProductByIdResponse {
+@XmlRootElement(name = "deleteProductResponse")
+public class DeleteProductResponse {
 
-    @XmlElement(name = "Product", required = true)
-    protected ProductModel product;
+    @XmlElement(required = true)
+    protected ServiceStatus serviceStatus;
 
     /**
-     * Gets the value of the product property.
+     * Gets the value of the serviceStatus property.
      * 
      * @return
      *     possible object is
-     *     {@link ProductModel }
+     *     {@link ServiceStatus }
      *     
      */
-    public ProductModel getProduct() {
-        return product;
+    public ServiceStatus getServiceStatus() {
+        return serviceStatus;
     }
 
     /**
-     * Sets the value of the product property.
+     * Sets the value of the serviceStatus property.
      * 
      * @param value
      *     allowed object is
-     *     {@link ProductModel }
+     *     {@link ServiceStatus }
      *     
      */
-    public void setProduct(ProductModel value) {
-        this.product = value;
+    public void setServiceStatus(ServiceStatus value) {
+        this.serviceStatus = value;
     }
 
 }

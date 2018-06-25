@@ -2,15 +2,7 @@ package com.example.soap;
 
 import com.example.dao.domain.Product;
 import com.example.dao.service.ProductService;
-import com.example.soap.product.AddProductRequest;
-import com.example.soap.product.AddProductResponse;
-import com.example.soap.product.GetAllProductsResponse;
-import com.example.soap.product.GetProductByIdRequest;
-import com.example.soap.product.GetProductByIdResponse;
-import com.example.soap.product.ProductModel;
-import com.example.soap.product.ServiceStatus;
-import com.example.soap.product.UpdateProductRequest;
-import com.example.soap.product.UpdateProductResponse;
+import com.example.soap.product.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -22,6 +14,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @Endpoint
@@ -97,6 +90,25 @@ public class ProductEndpoint {
         status.setStatusCode("SUCCESS");
         status.setMessage("Content Updated Successfully");
         UpdateProductResponse response = new UpdateProductResponse();
+        response.setServiceStatus(status);
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProductRequest")
+    @ResponsePayload
+    public DeleteProductResponse deleteProduct(@RequestPayload DeleteProductRequest request) {
+        ServiceStatus status = new ServiceStatus();
+        try {
+            Product product = productService.getProductById(request.getId());
+            productService.deleteProduct(product);
+            status.setStatusCode("SUCCESS");
+            status.setMessage("Content Deleted Successfully");
+        } catch (NoSuchElementException e) {
+            status.setStatusCode("FAIL");
+            status.setMessage("Content Not Available");
+            log.error("Content Not Available. " + e.getMessage());
+        }
+        DeleteProductResponse response = new DeleteProductResponse();
         response.setServiceStatus(status);
         return response;
     }

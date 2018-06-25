@@ -10,7 +10,6 @@ package com.example.soap.product;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Product" type="{http://example.com/soap/product}ProductModel"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +35,27 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "product"
+    "id"
 })
-@XmlRootElement(name = "getProductByIdResponse")
-public class GetProductByIdResponse {
+@XmlRootElement(name = "deleteProductRequest")
+public class DeleteProductRequest {
 
-    @XmlElement(name = "Product", required = true)
-    protected ProductModel product;
+    protected int id;
 
     /**
-     * Gets the value of the product property.
+     * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ProductModel }
-     *     
      */
-    public ProductModel getProduct() {
-        return product;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Sets the value of the product property.
+     * Sets the value of the id property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link ProductModel }
-     *     
      */
-    public void setProduct(ProductModel value) {
-        this.product = value;
+    public void setId(int value) {
+        this.id = value;
     }
 
 }
