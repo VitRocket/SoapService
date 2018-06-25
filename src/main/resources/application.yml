@@ -1,20 +1,16 @@
 server:
   port: 9100
 
-spring:
-  application:
-    name: soapservice
-
 eureka:
   client:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://system:system@localhost:9000/eureka/
 
-###
-#   Database Settings
-###
 spring:
+  application:
+    name: soapservice
+#   Database Settings
   datasource:
     url: jdbc:h2:mem:example-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     platform: h2
