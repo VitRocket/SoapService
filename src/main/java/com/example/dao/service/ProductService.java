@@ -10,6 +10,6 @@ public interface ProductService {
     Product getProductById(Integer id);
     Product getProductByName(String name);
     Product addProduct(Product product) throws SQLException;
-    void updateProduct(Product product);
+    void updateProduct(Product product) throws SQLException;
     void deleteProduct(Product product);
 }

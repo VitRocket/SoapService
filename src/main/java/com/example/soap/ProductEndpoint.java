@@ -91,10 +91,16 @@ public class ProductEndpoint {
     public UpdateProductResponse updateProduct(@RequestPayload UpdateProductRequest request) {
         Product product = new Product();
         BeanUtils.copyProperties(request.getProduct(), product);
-        productService.updateProduct(product);
         ServiceStatus status = new ServiceStatus();
-        status.setStatusCode("SUCCESS");
-        status.setMessage("Content Updated Successfully");
+        try {
+            productService.updateProduct(product);
+            status.setStatusCode("SUCCESS");
+            status.setMessage("Content Updated Successfully");
+        } catch (SQLException e) {
+            status.setStatusCode("FAIL");
+            status.setMessage("Product can't update in to DB. " + e.getMessage());
+            log.error("Product can't update in to DB. " + e.getMessage());
+        }
         UpdateProductResponse response = new UpdateProductResponse();
         response.setServiceStatus(status);
         return response;
