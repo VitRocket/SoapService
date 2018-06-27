@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,8 +20,10 @@ public class Product {
     @GeneratedValue
     private Integer id;
     @NonNull
+    @Column(length = 20)
     private String name;
     @NonNull
+    @Column(length = 100)
     private String description;
     @NonNull
     private String manufacturer;

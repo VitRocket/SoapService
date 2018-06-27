@@ -6,6 +6,7 @@ import com.example.soap.product.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DataAccessException;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -76,6 +77,11 @@ public class ProductEndpoint {
             status.setMessage("Content Already Available");
             response.setServiceStatus(status);
             log.error("Content Already Available. " + e.getMessage());
+        } catch (DataAccessException e) {
+            status.setStatusCode("FAIL");
+            status.setMessage(e.getRootCause().getMessage());
+            response.setServiceStatus(status);
+            log.error(e.getRootCause().getMessage());
         }
         return response;
     }
